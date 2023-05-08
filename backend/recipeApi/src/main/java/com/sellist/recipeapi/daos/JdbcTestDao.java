@@ -31,7 +31,7 @@ public class JdbcTestDao implements TestDao{
 
     private Recipe mapToRecipe(SqlRowSet r) {
         Recipe recipe = new Recipe();
-        recipe.setRecipe_id(r.getInt("recipe_id"));
+        recipe.setRecipeId(r.getInt("recipe_id"));
         recipe.setIngredients(r.getString("ingredients"));
         recipe.setName(r.getString("name"));
         recipe.setTime(r.getInt("time"));

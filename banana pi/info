@@ -1,4 +1,5 @@
-Using rasbian-stretch
+Using rasbian-stretch (2020-04-28-raspbian-stretch-bpi-m2z-sd-emmc, https://wiki.banana-pi.org/Banana_Pi_BPI-M2_ZERO )
+
 in rpi-boot
     - add wpa_supplicant.conf file with:
     ```

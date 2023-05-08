@@ -1,5 +1,5 @@
 export DISPLAY=:0;
-export KIOSK_URI='http://www.google.com';
+export KIOSK_URL='http://www.google.com';
 
 chromium-browser \
   --kiosk --enable-fullscreen \
@@ -20,4 +20,4 @@ chromium-browser \
   --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' \
   --disable-component-update \
   --allow-browser-signin=false \
-  "${KIOSK_URI}"
+  "${KIOSK_URL}"
