@@ -1,0 +1,3 @@
+FROM postgres
+COPY post_run_entries.sql /docker-entrypoint-initdb.d
+COPY initial_data.sql /docker-entrypoint-initdb.d

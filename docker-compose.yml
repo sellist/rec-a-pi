@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    restart: always
+    build: ./backend/database
+    container_name: db
+    ports:
+      - "8001:5432"
+    environment:
+      - POSTGRES_DB=recipes
+      - POSTGRES_USER=${PG_USERNAME}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+
+
+  recipe-backend:
+    build: ./backend/recipeApi
+    container_name: recipe-backend
+    environment:
+      - POSTGRES_SERVER=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${PG_USERNAME}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_DB=recipes
+      - JDBC_URL=jdbc:postgres://db:5432/recipes
+    ports:
+      - "8080:8080"
+    links:
+      - db

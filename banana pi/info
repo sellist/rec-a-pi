@@ -1,0 +1,24 @@
+Using rasbian-stretch
+in rpi-boot
+    - add wpa_supplicant.conf file with:
+    ```
+    network={
+        ssid="YOUR_SSID_HERE"
+        psk="YOUR_PASSWORD_HERE"
+        key_mgmt=WPA-PSK
+    }
+    ```
+
+    - add interfaces file
+    ```
+    auto wlan0
+    allow-hotplug wlan0
+    no-auto-down wlan0
+    iface wlan0 inet dhcp
+
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+    ```
+
+    - add file named "ssh" with no extenstion.
+
+    add stuff to boot script when you find a way how
