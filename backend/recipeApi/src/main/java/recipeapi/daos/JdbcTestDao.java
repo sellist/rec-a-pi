@@ -1,13 +1,14 @@
-package com.sellist.recipeapi.daos;
+package recipeapi.daos;
 
-import com.sellist.recipeapi.models.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import recipeapi.models.Recipe;
 
 @Component
-public class JdbcTestDao implements TestDao{
+public class JdbcTestDao implements TestDao {
 
     @Autowired
     private final JdbcTemplate jdbcTemplate;
@@ -17,6 +18,7 @@ public class JdbcTestDao implements TestDao{
     }
 
     @Override
+    @Cacheable(cacheNames = "recipe")
     public Recipe getRecipe() {
         Recipe r = null;
         String sql = "SELECT * FROM recipe LIMIT 1;";

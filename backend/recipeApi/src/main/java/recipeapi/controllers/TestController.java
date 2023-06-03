@@ -1,9 +1,9 @@
-package com.sellist.recipeapi.controllers;
+package recipeapi.controllers;
 
-import com.sellist.recipeapi.daos.TestDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import recipeapi.daos.TestDao;
 
 @RestController
 public class TestController {

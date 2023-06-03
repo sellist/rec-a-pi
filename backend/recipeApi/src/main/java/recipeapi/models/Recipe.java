@@ -1,4 +1,4 @@
-package com.sellist.recipeapi.models;
+package recipeapi.models;
 
 public class Recipe {
 
