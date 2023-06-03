@@ -4,6 +4,6 @@ import recipeapi.models.Recipe;
 
 public interface TestDao {
 
-    Recipe getRecipe(int id);
+    Recipe getRecipe(int testId);
 
 }

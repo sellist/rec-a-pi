@@ -18,13 +18,13 @@ public class JdbcTestDao implements TestDao {
     }
 
     @Override
-    @Cacheable(cacheNames = "recipes")
-    public Recipe getRecipe(int id) {
+    @Cacheable("recipes")
+    public Recipe getRecipe(int testId) {
         Recipe r = null;
-        String sql = "SELECT * FROM recipe WHERE id = ? LIMIT 1;";
+        String sql = "SELECT * FROM recipe WHERE recipe_id = ? ;";
         System.out.println("from method");
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,id);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,testId);
         if (results.next()) {
             r = mapToRecipe(results);
         }
