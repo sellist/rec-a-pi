@@ -12,7 +12,5 @@ public enum RefTags {
     SOUP,
     VEGAN,
     VEGETARIAN,
-    DESSERT,
-
-
+    DESSERT
 }

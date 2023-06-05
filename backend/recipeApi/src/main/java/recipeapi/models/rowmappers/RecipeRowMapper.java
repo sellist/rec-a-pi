@@ -4,6 +4,8 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import recipeapi.models.Recipe;
 
 public class RecipeRowMapper {
+    private RecipeRowMapper() {}
+
     public static Recipe mapToRecipe(SqlRowSet r) {
         Recipe recipe = new Recipe();
         recipe.setRecipeId(r.getInt("recipe_id"));

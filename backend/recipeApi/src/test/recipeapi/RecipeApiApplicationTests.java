@@ -1,5 +1,6 @@
 package recipeapi;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -8,7 +9,7 @@ class RecipeApiApplicationTests {
 
     @Test
     void contextLoads() {
-        // idunno
+        Assertions.assertSame(2,1+1);
     }
 
 }
