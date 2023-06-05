@@ -6,14 +6,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import recipeapi.models.Recipe;
+import recipeapi.models.rowmappers.RecipeRowMapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
-public class JdbcTestDao implements TestDao {
+public class JdbcRecipeDao implements RecipeDao {
 
     @Autowired
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcTestDao(JdbcTemplate jdbcTemplate) {
+    public JdbcRecipeDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -22,25 +26,18 @@ public class JdbcTestDao implements TestDao {
     public Recipe getRecipe(int testId) {
         Recipe r = null;
         String sql = "SELECT * FROM recipe WHERE recipe_id = ? ;";
-        System.out.println("from method");
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql,testId);
         if (results.next()) {
-            r = mapToRecipe(results);
+            r = RecipeRowMapper.mapToRecipe(results);
         }
 
         return r;
     }
 
-    private Recipe mapToRecipe(SqlRowSet r) {
-        Recipe recipe = new Recipe();
-        recipe.setRecipeId(r.getInt("recipe_id"));
-        recipe.setIngredients(r.getString("ingredients"));
-        recipe.setName(r.getString("name"));
-        recipe.setTime(r.getInt("time"));
-        recipe.setType(r.getString("type"));
-        recipe.setInstructions(r.getString("instructions"));
+    public List<Recipe> searchForTypes(String input) {
 
-        return recipe;
+        return new ArrayList<>();
+
     }
 }

@@ -2,7 +2,7 @@ package recipeapi.daos;
 
 import recipeapi.models.Recipe;
 
-public interface TestDao {
+public interface RecipeDao {
 
     Recipe getRecipe(int testId);
 

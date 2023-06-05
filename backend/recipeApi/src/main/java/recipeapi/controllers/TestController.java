@@ -5,17 +5,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import recipeapi.daos.TestDao;
+import recipeapi.daos.RecipeDao;
+import recipeapi.models.Recipe;
 
 @RestController
-@RequestMapping(path = "/test/")
+@RequestMapping(path = "/recipes/")
 public class TestController {
 
     @Autowired
-    private TestDao testDao;
+    private RecipeDao recipeDao;
 
-    @GetMapping("{testId}")
+    @GetMapping("test/{testId}")
     public String testGet(@PathVariable int testId) {
-        return testDao.getRecipe(testId).getName();
+        return recipeDao.getRecipe(testId).getName();
+    }
+
+    @GetMapping("{recipeId}")
+    public Recipe getRecipe(@PathVariable int recipeId) {
+        return recipeDao.getRecipe(recipeId);
     }
 }
