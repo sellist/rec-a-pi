@@ -21,7 +21,7 @@ public class RecipeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Recipe> getRecipe(@PathVariable long id) {
-        Recipe foundRecipe = recipeServiceImpl.getRecipeById(id);
+        Recipe foundRecipe = recipeServiceImpl.get(id);
         if (foundRecipe == null) {
             return ResponseEntity.notFound().build();
         } else {
@@ -31,7 +31,7 @@ public class RecipeController {
 
     @GetMapping()
     public ResponseEntity<List<Recipe>> getAllRecipes() {
-        List<Recipe> foundRecipes = recipeServiceImpl.getAllRecipe();
+        List<Recipe> foundRecipes = recipeServiceImpl.getAll();
         if (foundRecipes == null) {
             return ResponseEntity.notFound().build();
         } else {
