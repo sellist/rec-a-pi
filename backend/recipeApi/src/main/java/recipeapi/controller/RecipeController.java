@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import recipeapi.models.Recipe;
-import recipeapi.service.RecipeService;
+import recipeapi.service.RecipeServiceImpl;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
 public class RecipeController {
 
     @Autowired
-    private RecipeService recipeServiceImpl;
+    private RecipeServiceImpl recipeServiceImpl;
 
 
     @GetMapping("/{id}")

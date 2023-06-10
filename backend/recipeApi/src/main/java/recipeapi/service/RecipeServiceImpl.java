@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
-public class RecipeServiceImpl implements RecipeService {
+public class RecipeServiceImpl implements AbstractService<Recipe> {
 
     private final RecipeRepository recipeRepository;
 
@@ -20,16 +20,9 @@ public class RecipeServiceImpl implements RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-
-    @Override
-    public List<Recipe> getAllRecipe() {
-        return recipeRepository.findAll();
-    }
-
-    @Override
     public List<Recipe> getRecipeByTypeString(String request) {
         Pattern regex = Pattern.compile("(\\b[^\\s\\W]+\\b)");
-        List<Recipe> allRecipe = getAllRecipe();
+        List<Recipe> allRecipe = this.getAll();
         Optional<Recipe> result = allRecipe.stream().filter(
                 o -> regex.matcher(o.getType()).matches()).findAny();
         return result.stream().toList();
@@ -37,19 +30,24 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe createRecipe(Recipe recipe) {
-        return recipeRepository.save(recipe);
+    public List<Recipe> getAll() {
+        return recipeRepository.findAll();
     }
 
     @Override
-    public void deleteRecipe(Long id) {
+    public Recipe create(Recipe t) {
+        return recipeRepository.save(t);
+    }
+
+    @Override
+    public void delete(Long id) {
         Recipe recipe = recipeRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Recipe not found by id: " + id));
 
         recipeRepository.delete(recipe);
     }
 
     @Override
-    public Recipe getRecipeById(Long id) {
+    public Recipe get(Long id) {
         Recipe result = recipeRepository.getRecipe(id);
         if(result != null) {
             return result;
