@@ -9,6 +9,6 @@ import recipeapi.models.Recipe;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     @Transactional
-    @Query("select * from recipe where recipe_id = :id")
+    @Query(value = "select * from recipe where id = :id", nativeQuery = true)
     Recipe getRecipe(@Param("id") long id);
 }

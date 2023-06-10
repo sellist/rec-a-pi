@@ -1,5 +1,6 @@
 package recipeapi.models;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,9 +21,10 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int recipeId;
+    private int id;
 
     @Column(name = "name")
+    @Nonnull
     private String name;
 
     @Column(name = "type")

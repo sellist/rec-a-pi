@@ -8,7 +8,7 @@ public class RecipeRowMapper {
 
     public static Recipe mapToRecipe(SqlRowSet r) {
         Recipe recipe = new Recipe();
-        recipe.setRecipeId(r.getInt("recipe_id"));
+        recipe.setId(r.getInt("id"));
         recipe.setIngredients(r.getString("ingredients"));
         recipe.setName(r.getString("name"));
         recipe.setTime(r.getInt("time"));
