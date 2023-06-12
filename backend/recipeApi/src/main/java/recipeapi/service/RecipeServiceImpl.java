@@ -45,7 +45,6 @@ public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
     @Override
     public void delete(Long id) {
         Recipe recipe = recipeRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Recipe not found by id: " + id));
-
         recipeRepository.delete(recipe);
     }
 
@@ -74,5 +73,16 @@ public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
                 dto.getInstructions(),
                 dto.getId()
         );
+    }
+
+    @Transactional
+    @Override
+    public int updateObject(Recipe dto, int id) {
+        if (id == 0) {
+            return 0;
+        } else {
+            dto.setId(id);
+        }
+        return this.updateObject(dto);
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,5 +52,14 @@ public class RecipeController {
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Integer> updateRecipe(@RequestBody Recipe updatedRecipe, @PathVariable int id) {
+        if (updatedRecipe == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            Integer returnVal = recipeServiceImpl.updateObject(updatedRecipe, id);
+            return ResponseEntity.ok(returnVal);
+        }
+    }
 
 }
