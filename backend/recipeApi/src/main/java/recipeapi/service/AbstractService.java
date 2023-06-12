@@ -1,14 +1,19 @@
 package recipeapi.service;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
-interface AbstractService<T> {
+interface AbstractService<T, ID> {
 
-    public List<T> getAll();
+    List<T> getAll();
 
-    public T create(T t);
+    T create(T t);
 
-    public void delete(Long id);
+    void delete(ID id);
 
-    public T get(Long id);
+    T get(ID id);
+
+    @Transactional
+    int updateObject(T t);
 }

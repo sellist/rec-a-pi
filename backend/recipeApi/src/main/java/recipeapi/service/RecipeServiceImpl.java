@@ -2,6 +2,7 @@ package recipeapi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.ResourceAccessException;
 import recipeapi.models.Recipe;
 import recipeapi.repository.RecipeRepository;
@@ -11,8 +12,9 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
-public class RecipeServiceImpl implements AbstractService<Recipe> {
+public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
 
+    @Autowired
     private final RecipeRepository recipeRepository;
 
     public RecipeServiceImpl(RecipeRepository recipeRepository) {
@@ -39,6 +41,7 @@ public class RecipeServiceImpl implements AbstractService<Recipe> {
         return recipeRepository.save(t);
     }
 
+    @Transactional
     @Override
     public void delete(Long id) {
         Recipe recipe = recipeRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Recipe not found by id: " + id));
@@ -46,13 +49,30 @@ public class RecipeServiceImpl implements AbstractService<Recipe> {
         recipeRepository.delete(recipe);
     }
 
+
     @Override
     public Recipe get(Long id) {
-        Recipe result = recipeRepository.getRecipe(id);
-        if(result != null) {
-            return result;
+        Optional<Recipe> result = recipeRepository.findById(id);
+        if(result.isPresent()) {
+            return result.get();
         }else {
             throw new ResourceAccessException("Recipe not found by id: " + id);
         }
+    }
+
+    @Transactional
+    @Override
+    public int updateObject(Recipe dto) {
+
+        if (dto.getId() == 0) {return 0;}
+
+        return recipeRepository.updateRecipeById(
+                dto.getName(),
+                dto.getType(),
+                dto.getIngredients(),
+                dto.getTime(),
+                dto.getInstructions(),
+                dto.getId()
+        );
     }
 }

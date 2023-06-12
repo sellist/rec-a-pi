@@ -1,14 +1,19 @@
 package recipeapi.repository;
 
-import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.lang.NonNull;
+import org.springframework.transaction.annotation.Transactional;
 import recipeapi.models.Recipe;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
-
     @Transactional
-    @Query(value = "select * from recipe where id = :id", nativeQuery = true)
-    Recipe getRecipe(@Param("id") long id);
+    @Modifying
+    @Query("""
+            update Recipe r set r.name = ?1, r.type = ?2, r.ingredients = ?3, r.time = ?4, r.instructions = ?5
+            where r.id = ?6""")
+    int updateRecipeById(String name, String type, String ingredients, int time, String instructions, @NonNull int id);
+
+
 }

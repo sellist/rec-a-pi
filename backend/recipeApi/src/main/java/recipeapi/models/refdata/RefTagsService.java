@@ -28,7 +28,7 @@ public class RefTagsService {
         Set<String> output = new HashSet<>();
 
         for (RefTags ref : refTagsArray) {
-            output.add(ref.name());
+            output.add(ref.name().toLowerCase());
         }
         return output;
     }
