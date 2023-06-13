@@ -1,0 +1,30 @@
+{
+    "id": 4,
+    "name": "Fluffy Pancakes",
+    "type": [
+        "vegetarian",
+        "breakfast"
+    ],
+    "ingredients": [
+        "1 1/2 cups All-Purpose Flour",
+        "3 tbsp Sugar",
+        "1 tsp Baking Powder",
+        "1/2 tsp Baking Soda",
+        "1/2 tsp Salt",
+        "1 cup Buttermilk",
+        "1/2 cup Milk",
+        "2 Eggs",
+        "2 tbsp Butter, melted",
+        "1 tsp Vanilla Extract"
+    ],
+    "time": 20,
+    "instructions": [
+        "In a mixing bowl, whisk together flour, sugar, baking powder, baking soda, and salt",
+        "In a separate bowl, whisk together buttermilk, milk, eggs, melted butter, and vanilla extract",
+        "Pour the wet ingredients into the dry ingredients and stir until just combined",
+        "Preheat a non-stick pan or griddle over medium heat",
+        "Pour 1/4 cup of batter onto the pan for each pancake",
+        "Cook until bubbles form on the surface, then flip and cook the other side until golden brown",
+        "Serve hot with your favorite toppings."
+    ]
+}
