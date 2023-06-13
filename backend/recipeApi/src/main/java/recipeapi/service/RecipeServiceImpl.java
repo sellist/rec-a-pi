@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.ResourceAccessException;
-import recipeapi.models.Recipe;
+import recipeapi.models.recipe.Recipe;
 import recipeapi.repository.RecipeRepository;
 
 import java.util.List;

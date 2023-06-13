@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import recipeapi.models.Recipe;
+import recipeapi.models.recipe.Recipe;
 import recipeapi.service.RecipeServiceImpl;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package recipeapi.models;
+package recipeapi.models.recipe;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
@@ -15,6 +15,7 @@ import lombok.Setter;
 import lombok.ToString;
 import recipeapi.models.refdata.RefTagsConverter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -40,12 +41,14 @@ public class Recipe {
     private Set<String> type;
 
     @Column(name = "ingredients")
-    private String ingredients;
+    @Convert(converter = RecipeListConverter.class)
+    private List<String> ingredients;
 
     @Column(name = "time")
     private int time;
 
     @Column(name = "instructions")
-    private String instructions;
+    @Convert(converter = RecipeListConverter.class)
+    private List<String> instructions;
 
 }

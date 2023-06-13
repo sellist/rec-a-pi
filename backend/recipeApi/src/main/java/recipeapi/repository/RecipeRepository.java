@@ -5,8 +5,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
-import recipeapi.models.Recipe;
+import recipeapi.models.recipe.Recipe;
 
+import java.util.List;
 import java.util.Set;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
@@ -18,9 +19,9 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     int updateRecipeById(@NonNull int id,
                          @NonNull String name,
                          @NonNull Set<String> type,
-                         @NonNull String ingredients,
+                         @NonNull List<String> ingredients,
                          @NonNull int time,
-                         @NonNull String instructions);
+                         @NonNull List<String> instructions);
 
 
 
