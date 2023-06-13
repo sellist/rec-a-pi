@@ -7,13 +7,22 @@ import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 import recipeapi.models.Recipe;
 
+import java.util.Set;
+
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     @Transactional
     @Modifying
     @Query("""
-            update Recipe r set r.name = ?1, r.type = ?2, r.ingredients = ?3, r.time = ?4, r.instructions = ?5
-            where r.id = ?6""")
-    int updateRecipeById(String name, String type, String ingredients, int time, String instructions, @NonNull int id);
+            update Recipe r set r.name = ?2, r.type = ?3, r.ingredients = ?4, r.time = ?5, r.instructions = ?6
+            where r.id = ?1""")
+    int updateRecipeById(@NonNull int id,
+                         @NonNull String name,
+                         @NonNull Set<String> type,
+                         @NonNull String ingredients,
+                         @NonNull int time,
+                         @NonNull String instructions);
+
+
 
 
 }

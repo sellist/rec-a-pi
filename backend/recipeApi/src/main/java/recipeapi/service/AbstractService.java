@@ -17,5 +17,5 @@ interface AbstractService<T, I> {
     @Transactional
     int updateObject(T t);
 
-    int updateObject(T t, int id);
+    int updateObject(T t, Integer id);
 }

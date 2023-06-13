@@ -20,7 +20,7 @@ public class RefTagsService {
     }
 
     public boolean validTag(String input) {
-        return refTagsSet.contains(input.toUpperCase());
+        return refTagsSet.contains(input.toLowerCase());
     }
 
 

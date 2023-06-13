@@ -2,16 +2,24 @@ package recipeapi.models;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import recipeapi.models.refdata.RefTagsConverter;
 
-@Data
+import java.util.Set;
+
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -28,7 +36,8 @@ public class Recipe {
     private String name;
 
     @Column(name = "type")
-    private String type;
+    @Convert(converter = RefTagsConverter.class)
+    private Set<String> type;
 
     @Column(name = "ingredients")
     private String ingredients;

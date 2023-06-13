@@ -9,7 +9,7 @@ import recipeapi.repository.RecipeRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 @Service
 public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
@@ -23,12 +23,10 @@ public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
     }
 
     public List<Recipe> getRecipeByTypeString(String request) {
-        Pattern regex = Pattern.compile("(\\b[^\\s\\W]+\\b)");
         List<Recipe> allRecipe = this.getAll();
-        Optional<Recipe> result = allRecipe.stream().filter(
-                o -> regex.matcher(o.getType()).matches()).findAny();
-        return result.stream().toList();
-        // (\b[^\s\W]+\b)
+        Stream<Recipe> result = allRecipe.stream().filter(
+                o -> o.getType().contains(request));
+        return result.toList();
     }
 
     @Override
@@ -66,20 +64,21 @@ public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
         if (dto.getId() == 0) {return 0;}
 
         return recipeRepository.updateRecipeById(
+                dto.getId(),
                 dto.getName(),
                 dto.getType(),
                 dto.getIngredients(),
                 dto.getTime(),
-                dto.getInstructions(),
-                dto.getId()
+                dto.getInstructions()
+
         );
     }
 
     @Transactional
     @Override
-    public int updateObject(Recipe dto, int id) {
-        if (id == 0) {
-            return 0;
+    public int updateObject(Recipe dto, Integer id) {
+        if (id == null) {
+            return updateObject(dto);
         } else {
             dto.setId(id);
         }
