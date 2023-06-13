@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import recipeapi.models.recipe.Recipe;
+import recipeapi.models.refdata.RefTagsService;
 import recipeapi.service.RecipeServiceImpl;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/recipe")
@@ -21,6 +23,8 @@ public class RecipeController {
     @Autowired
     private RecipeServiceImpl recipeServiceImpl;
 
+    @Autowired
+    private RefTagsService refTagsService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Recipe> getRecipe(@PathVariable long id) {
@@ -29,6 +33,16 @@ public class RecipeController {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(foundRecipe);
+        }
+    }
+
+    @GetMapping("/types")
+    public ResponseEntity<Set<String>> getValidTags() {
+        Set<String> tags = refTagsService.getRefTagsSet();
+        if (tags == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(tags);
         }
     }
 

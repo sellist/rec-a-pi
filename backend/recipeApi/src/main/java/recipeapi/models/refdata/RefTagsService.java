@@ -33,4 +33,7 @@ public class RefTagsService {
         return output;
     }
 
+    public Set<String> getRefTagsSet() {
+        return refTagsSet;
+    }
 }
