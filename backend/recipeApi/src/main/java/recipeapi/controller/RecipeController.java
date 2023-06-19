@@ -36,6 +36,17 @@ public class RecipeController {
         }
     }
 
+    @GetMapping("/search/{types}")
+    public ResponseEntity<List<Recipe>> searchRecipeByType(@PathVariable String[] types) {
+        List<Recipe> returnedRecipes = this.recipeServiceImpl.getRecipeByTypeString(types);
+        if (returnedRecipes == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(returnedRecipes);
+        }
+    }
+
+
     @GetMapping("/types")
     public ResponseEntity<Set<String>> getValidTags() {
         Set<String> tags = refTagsService.getRefTagsSet();

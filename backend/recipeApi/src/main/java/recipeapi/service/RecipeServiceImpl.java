@@ -7,8 +7,12 @@ import org.springframework.web.client.ResourceAccessException;
 import recipeapi.models.recipe.Recipe;
 import recipeapi.repository.RecipeRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 @Service
@@ -22,11 +26,18 @@ public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
         this.recipeRepository = recipeRepository;
     }
 
-    public List<Recipe> getRecipeByTypeString(String request) {
-        List<Recipe> allRecipe = this.getAll();
-        Stream<Recipe> result = allRecipe.stream().filter(
-                o -> o.getType().contains(request));
-        return result.toList();
+    public List<Recipe> getRecipeByTypeString(String[] request) {
+        Set<String> s = new HashSet<>(Arrays.stream(request).toList());
+        List<Recipe> recipes = this.getAll();
+        List<Recipe> output = new ArrayList<>();
+
+        for (Recipe r : recipes) {
+            if (r.getType().containsAll(s)) {
+                output.add(r);
+            }
+        }
+
+        return output;
     }
 
     @Override
