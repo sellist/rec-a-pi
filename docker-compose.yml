@@ -5,7 +5,8 @@ services:
     build: ./website
     container_name: front_end
     ports:
-      - "8000:8000"
+      - "3000:3000"
+    
   db:
     restart: always
     build: ./backend/database
