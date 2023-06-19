@@ -1,6 +1,11 @@
 version: '3'
 
 services:
+  frontend:
+    build: ./website
+    container_name: front_end
+    ports:
+      - "8000:8000"
   db:
     restart: always
     build: ./backend/database
