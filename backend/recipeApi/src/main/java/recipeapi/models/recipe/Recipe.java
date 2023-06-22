@@ -51,4 +51,7 @@ public class Recipe {
     @Convert(converter = RecipeListConverter.class)
     private List<String> instructions;
 
+    @Column(name = "active")
+    private Boolean active;
+
 }

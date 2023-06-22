@@ -57,7 +57,6 @@ public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
         recipeRepository.delete(recipe);
     }
 
-
     @Override
     public Recipe get(Long id) {
         Optional<Recipe> result = recipeRepository.findById(id);
@@ -66,6 +65,31 @@ public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
         }else {
             throw new ResourceAccessException("Recipe not found by id: " + id);
         }
+    }
+
+    public Recipe getActive() {
+        return this.recipeRepository.findByActiveTrue();
+    }
+
+    public Recipe updateActive(Long toActivateId) {
+        if (toActivateId < 1 || toActivateId > getRowCount()) {
+            throw new ResourceAccessException("Not a valid ID");
+        }
+
+        Recipe activeRecipe = this.getActive();
+
+        if (activeRecipe == null) {
+            Recipe recipeToActivate = this.get(toActivateId);
+            recipeToActivate.setActive(true);
+            return recipeRepository.save(recipeToActivate);
+        }
+
+        activeRecipe.setActive(null);
+        recipeRepository.saveAndFlush(activeRecipe);
+
+        Recipe recipeToActivate = this.get(toActivateId);
+        recipeToActivate.setActive(true);
+        return recipeRepository.save(recipeToActivate);
     }
 
     @Transactional
@@ -94,5 +118,9 @@ public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
             dto.setId(id);
         }
         return this.updateObject(dto);
+    }
+
+    private long getRowCount() {
+        return recipeRepository.count();
     }
 }

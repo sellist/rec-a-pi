@@ -10,9 +10,13 @@ CREATE TABLE recipe (
 	ingredients varchar(9999),
 	time int NOT NULL,
 	instructions varchar(9999),
+    active boolean
 
+    CONSTRAINT c_active_true_or_null CHECK (active),
+    CONSTRAINT c_active_only_one_true UNIQUE (active),
 	CONSTRAINT pk_recipe_id PRIMARY KEY (id)
 );
+
 
 
 COMMIT;

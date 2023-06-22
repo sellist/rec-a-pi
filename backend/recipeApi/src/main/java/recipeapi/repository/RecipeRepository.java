@@ -3,7 +3,6 @@ package recipeapi.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 import recipeapi.models.recipe.Recipe;
@@ -12,6 +11,8 @@ import java.util.List;
 import java.util.Set;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
+    Recipe findByActiveTrue();
+
     @Transactional
     @Modifying
     @Query("""
@@ -23,5 +24,4 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
                          @NonNull List<String> ingredients,
                          @NonNull int time,
                          @NonNull List<String> instructions);
-
 }
