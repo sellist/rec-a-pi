@@ -1,6 +1,7 @@
 package recipeapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ public class DisplayController {
     @Autowired
     private RecipeServiceImpl recipeServiceImpl;
 
+    @Cacheable
     @GetMapping()
     public ResponseEntity<Recipe> getActiveRecipe() {
         Recipe foundRecipe = recipeServiceImpl.getActive();
@@ -27,6 +29,7 @@ public class DisplayController {
             return ResponseEntity.ok(foundRecipe);
         }
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Recipe> updateActiveRecipe(@PathVariable Long id) {
         if (id < 1) {
@@ -36,6 +39,4 @@ public class DisplayController {
             return ResponseEntity.ok(returnVal);
         }
     }
-
-
 }
