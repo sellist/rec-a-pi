@@ -1,5 +1,4 @@
 function Phone() {
-
     return (
         <h1>hello Phone</h1>
     )
