@@ -1,6 +1,7 @@
 package recipeapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class RecipeController {
     @Autowired
     private RefTagsService refTagsService;
 
+    @Cacheable(value = "recipes")
     @GetMapping("/{id}")
     public ResponseEntity<Recipe> getRecipe(@PathVariable long id) {
         Recipe foundRecipe = recipeServiceImpl.get(id);

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
+
     Recipe findByActiveTrue();
 
     @Transactional

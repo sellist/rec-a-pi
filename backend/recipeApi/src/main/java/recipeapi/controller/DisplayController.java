@@ -21,7 +21,6 @@ public class DisplayController {
     @Autowired
     private RecipeServiceImpl recipeServiceImpl;
 
-    @Cacheable
     @GetMapping()
     public ResponseEntity<Recipe> getActiveRecipe() {
         Recipe foundRecipe = recipeServiceImpl.getActive();

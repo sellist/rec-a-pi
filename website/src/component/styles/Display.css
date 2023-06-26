@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+.recipe-container > * {
+    
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.recipe-name {
+    color:red;
+}
+
+.recipe-types {
+    color:blue;
+}
+
+.recipe-time {
+    color:green;
+}
+
+.ingredient-container {
+
+}
+
+.ingredient-step {
+    color:darkblue;
+}
+
+.instruction-container {
+    border: 3px solid red;
+}
+.instruction-step {
+    color:brown;
+}
