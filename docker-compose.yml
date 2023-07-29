@@ -6,6 +6,8 @@ services:
     container_name: front_end
     ports:
       - "3000:3000"
+    depends_on:
+      - recipe-backend
     
   db:
     restart: always
@@ -32,4 +34,6 @@ services:
     ports:
       - "8080:8080"
     links:
+      - db
+    depends_on:
       - db
