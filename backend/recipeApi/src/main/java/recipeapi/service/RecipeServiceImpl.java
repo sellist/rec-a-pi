@@ -1,5 +1,6 @@
 package recipeapi.service;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +14,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Stream;
 
 @Service
 public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
@@ -90,6 +90,11 @@ public class RecipeServiceImpl implements AbstractService<Recipe, Long> {
         Recipe recipeToActivate = this.get(toActivateId);
         recipeToActivate.setActive(true);
         return recipeRepository.save(recipeToActivate);
+    }
+
+    @PostConstruct
+    public void defaultAcitve(){
+        this.updateActive(1L);
     }
 
     @Transactional
