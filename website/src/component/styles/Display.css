@@ -8,8 +8,11 @@
     background: transparent;
 }
 
+body {
+    background-color: rgb(rgb(226, 235, 227), green, blue);
+}
+
 .recipe-container > * {
-    
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -18,28 +21,40 @@
 }
 
 .recipe-name {
+    font-size: 5vh;
     color:red;
+    text-align: center;
 }
 
 .recipe-types {
+    font-size: 3vh;
+    text-align: center;
     color:blue;
 }
 
 .recipe-time {
+    font-size: 3vh;
+    text-align: center;
     color:green;
 }
 
 .ingredient-container {
-
+    background-color: antiquewhite;
+    font-size: 2vh;
 }
 
 .ingredient-step {
     color:darkblue;
+    margin: 2px;
+    border: 1px solid black
 }
 
 .instruction-container {
-    border: 3px solid red;
+    background-color: aliceblue;
+    font-size: 2vh;
 }
 .instruction-step {
+    border: 1px solid black;
+    margin: 2px;
     color:brown;
 }

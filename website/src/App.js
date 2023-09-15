@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Display from "./component/display";
-import Phone from "./component/phone";
+import Display from "./component/Display";
+import Phone from "./component/RecipeList";
 
 function App() {
     return (

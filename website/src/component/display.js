@@ -30,7 +30,7 @@ function Display() {
         }).catch(e => {
             setData("none");
         });
-    },100*10);
+    },300*10);
 
     useEffect(() => {
         axios.get("http://localhost:8080/display").then((response) => {
